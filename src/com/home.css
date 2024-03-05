@@ -1,0 +1,23 @@
+.umersohail{
+    color:white;
+    font-size:32px ;
+}
+.c{
+    color:#01D293;
+}
+body{
+    color:white;
+}
+.n{
+    color:white;
+}
+@media screen and (max-width:767px) {
+    
+    .fff{
+        margin-top: 390px;
+    }
+    .d{
+        position: relative;
+        bottom:800px;
+    }
+}

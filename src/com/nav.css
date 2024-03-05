@@ -1,0 +1,19 @@
+.nav a:hover{
+    color:#01D293;
+
+}
+.nav a{
+    color:white;
+    
+}
+.x{
+    margin:23px;
+}
+
+@media screen and (max-width:768px)and (min-width:1024px) {
+    .x{
+        display: none;
+    }
+  
+    
+}

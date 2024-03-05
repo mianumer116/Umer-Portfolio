@@ -1,0 +1,22 @@
+.bgr{
+    border:solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height:300px;
+}
+.fg{
+    color:#01D293;
+}
+.lgs{
+    list-style: circle;
+    color:white;
+}
+
+.fg:hover {
+    display: flex;
+    justify-content: center;
+    transition: 2s;
+  }
+  

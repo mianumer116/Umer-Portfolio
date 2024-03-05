@@ -1,0 +1,129 @@
+.cone{
+    color:#01D293;
+    font-size: 32px;
+}
+.co{
+    font-size: 32px;
+}
+.box {
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 0 #171F38, 0 -4px 0 #171F38, 4px 0 0 #171F38, -4px 0 0 #171F38;
+    background-color: #171F38;
+   
+    
+}
+.pil{
+    color:#333D58;
+   
+}
+.boo{
+    background-color: #424C68;
+    color:white;
+    display: inline-block;
+    margin-top: 45px;
+    padding:05px;
+    width:auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    margin: auto;
+}
+.boo:hover{
+    background-color: white;
+    color:black;
+}
+.mainboo{
+    display: flex;
+    margin-top: 43px;
+}
+.fustack{
+    margin-top: 11px;
+}
+.mab{
+    margin-top: 113px;
+}
+.one {
+    /* Initial styles */
+    /* ... */
+    position: relative;
+    bottom: 0; /* Set an initial value for bottom */
+    transition: bottom 1.3s ease;
+}
+.one:hover {
+
+    bottom: 20px;
+    /* Adding transition on hover */
+   
+}
+.two{
+    position: relative;
+    bottom: 0; /* Set an initial value for bottom */
+    transition: bottom 1.3s ease;
+}
+
+.two:hover{
+    bottom:20px;
+}
+
+.three{
+    position: relative;
+    bottom: 0; /* Set an initial value for bottom */
+    transition: bottom 1.3s ease;
+
+}
+.three:hover{
+    bottom:20px;
+}
+
+@media screen and (max-width:767px) {
+.cone{
+    position: relative;
+    bottom: 300px;
+    margin-left: 100px;
+    display: none;
+}
+    
+}
+@media screen and (max-width:1024px) and (min-width:768px) {
+    .cone{
+        position: relative;
+        bottom: 399px;
+    
+        font-size: 35px;
+    }
+    .co{
+        position: relative;
+        bottom:200px;
+    
+        font-size:35px;
+        display: none;
+    }
+    
+}
+@media screen and (max-width : 281px) {
+    .cone{
+        bottom: 100px;
+        font-size: 16px;
+    }
+    .co{
+        font-size: 16px;
+    }
+    .box{
+        width:auto;
+        padding:0px;
+    }
+    
+}
+
+@media screen and (max-width:1024px) {
+    .cone{
+        display: none;
+
+    }
+    .co{
+        display: none;
+    }
+    
+}

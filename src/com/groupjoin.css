@@ -1,0 +1,14 @@
+@media screen  and (max-width:769px) and (min-width:767px){
+    .home{
+        position: relative;
+        bottom:200px;
+    }
+    
+}
+@media screen and (max-width:640px) {
+    .home{
+        width:300px;
+        display: none;
+    }
+    
+}
