@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Nav from './com/nav.js'
-import Registeration from './com/registration.js';
 import Home from './com/home.js'
 import Courses from './com/courses.js'
 
