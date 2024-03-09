@@ -1,10 +1,8 @@
 
 
 .bla{
-    margin-top:100px !important;
-    height: 400px !important;
-    border:solid !important;
-    padding:80px !important;
+    margin-top:100px; 
+    height: 400px ;
 }
 .bdg{
     font-size: 32px;

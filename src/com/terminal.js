@@ -5,7 +5,10 @@ function Terminal() {
 const col={
   border:"solid",
   borderColor:'white',
-  marginTop:'45px'
+  marginTop:'100px',
+  paddig:'80px',
+  height:'400px'
+
 }
 
   return (
