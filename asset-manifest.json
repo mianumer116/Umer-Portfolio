@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bitcoin/static/css/main.cc33ae09.css",
-    "main.js": "/bitcoin/static/js/main.edebe825.js",
-    "static/js/453.ad6eb26e.chunk.js": "/bitcoin/static/js/453.ad6eb26e.chunk.js",
-    "index.html": "/bitcoin/index.html",
-    "main.cc33ae09.css.map": "/bitcoin/static/css/main.cc33ae09.css.map",
-    "main.edebe825.js.map": "/bitcoin/static/js/main.edebe825.js.map",
-    "453.ad6eb26e.chunk.js.map": "/bitcoin/static/js/453.ad6eb26e.chunk.js.map"
+    "main.css": "/Umer-Portfolio/static/css/main.c0cece80.css",
+    "main.js": "/Umer-Portfolio/static/js/main.7c494dbf.js",
+    "static/js/453.ad6eb26e.chunk.js": "/Umer-Portfolio/static/js/453.ad6eb26e.chunk.js",
+    "index.html": "/Umer-Portfolio/index.html",
+    "main.c0cece80.css.map": "/Umer-Portfolio/static/css/main.c0cece80.css.map",
+    "main.7c494dbf.js.map": "/Umer-Portfolio/static/js/main.7c494dbf.js.map",
+    "453.ad6eb26e.chunk.js.map": "/Umer-Portfolio/static/js/453.ad6eb26e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.cc33ae09.css",
-    "static/js/main.edebe825.js"
+    "static/css/main.c0cece80.css",
+    "static/js/main.7c494dbf.js"
   ]
 }
