@@ -8,7 +8,7 @@ function Courses() {
             <div className="grid lg:grid-cols-3 mab gap-7">
                 <a href="https://youtu.be/yuH7O8zpwNc?si=wz7Z5Zqlw3JcwxoF">
                 <div className='box one'>
-                    <img src="https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/417538270_951404569836263_6836744951052527775_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeHSngUsgGFaPSmmEct9r9eiGgAwry5mgV4aADCvLmaBXrAlJYOey5MNjXoOFSLi5Y6LN9xePKmswRs74fXj7XGw&_nc_ohc=hEmwTeaF62QAX9DT0b7&_nc_ht=scontent.flhe13-1.fna&oh=00_AfCOkRynE5ak53FcpIpwHtGIeDkhpv21-1nEokxmNG366g&oe=65DF778C"></img>
+                    <img src="https://img.freepik.com/premium-photo/beautiful-mountain-lake-generative-ai_438099-11773.jpg?size=626&ext=jpg&ga=GA1.1.71557408.1707852211&semt=ais"></img>
                     <p className='fustack'> Original Facebook Login Page </p>
                     <p className='pil'>Building Facebook Login Page Looks Like Orginal </p>
                     <div className='mainboo '>
@@ -41,7 +41,7 @@ function Courses() {
                 <div className='box two'>
 
                     
-                        <img src="https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/417487374_951409636502423_3106815885813642410_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=3635dc&_nc_eui2=AeFVUZ5Sv199X9DT_mQfqOd6zYr1eSJsfn7NivV5Imx-frKYf_dz2wsro4iZaqRRjD-WSQA-G8opW5yaLjwM7kwZ&_nc_ohc=MCAdXwsItCAAX_cBYW8&_nc_ht=scontent.flhe13-1.fna&oh=00_AfDJrqgQwTLIuDBbie7CUkmHGmoxuStvEmWZ2AhCfTKnwg&oe=65E07468"></img>
+                        <img src="https://img.freepik.com/free-photo/reflection-lights-mountain-lake-captured-parco-ciani-lugano-switzerland_181624-24209.jpg?size=626&ext=jpg&ga=GA1.1.71557408.1707852211&semt=ais"></img>
                         <p className='fustack'>Master Trading Strategies</p>
                         <p className='pil'>Trade Financial Assets and Earn a passive side Income By Just Buy and Sell Digitals assets</p>
 
