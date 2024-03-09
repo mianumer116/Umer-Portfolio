@@ -12,6 +12,9 @@
 .fp{
     background-color: #0E1630;
 }
+.fp:hover{
+    background-color: #0E1630;
+}
 @media screen and (max-width:768px)and (min-width:1024px) {
     .x{
         display: none;

@@ -1,13 +1,9 @@
-import React,{useState,useEffect} from 'react'
+
 import './terminal.css';
 
 function Terminal() {
 
-const[help,sethelp]=useState('')
-const helps=(e)=>{
-  sethelp(e.target.value)
 
-}
   return (
     <>
       <div className='bla'>
@@ -18,15 +14,11 @@ const helps=(e)=>{
           <p>
             <span className="green-text">$ UmerSohail-dev</span>
             <span className="blinking-cursor s">
-              <input  className="if" value={help} onChange={helps} /> |
+              |
             </span>
           </p>
           <div className=""></div>
-          <form action="http://localhost:3000/help" >
-            <input  name={help} className="gsv"/>
-
-          <button type="submit"  className='fdsa'>HELP</button>
-          </form>
+         
         </div>
       </div>
       
