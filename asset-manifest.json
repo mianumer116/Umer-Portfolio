@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Umer-Portfolio/static/css/main.72abd73a.css",
-    "main.js": "/Umer-Portfolio/static/js/main.26ca7f5e.js",
+    "main.js": "/Umer-Portfolio/static/js/main.92b31ac6.js",
     "static/js/453.ad6eb26e.chunk.js": "/Umer-Portfolio/static/js/453.ad6eb26e.chunk.js",
     "index.html": "/Umer-Portfolio/index.html",
     "main.72abd73a.css.map": "/Umer-Portfolio/static/css/main.72abd73a.css.map",
-    "main.26ca7f5e.js.map": "/Umer-Portfolio/static/js/main.26ca7f5e.js.map",
+    "main.92b31ac6.js.map": "/Umer-Portfolio/static/js/main.92b31ac6.js.map",
     "453.ad6eb26e.chunk.js.map": "/Umer-Portfolio/static/js/453.ad6eb26e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.72abd73a.css",
-    "static/js/main.26ca7f5e.js"
+    "static/js/main.92b31ac6.js"
   ]
 }
