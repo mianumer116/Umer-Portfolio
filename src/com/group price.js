@@ -1,13 +1,6 @@
 import './groupprice.css'
 function Group() {
-    const colors={
-        color:'#01D293',
-    }
-    const group={
-        color:'#01D293',
-        fontSize:'72px'
-
-    }
+   
     const div={
         display:'flex',
         justifyContent:'center'
@@ -17,7 +10,7 @@ function Group() {
         <div style={div}> 
 
         
-        <h1 style={group}>GROUP JOINING FEES</h1>
+        <h1 className="gjf">GROUP JOINING FEES</h1>
         </div>
         <div className="grid lg:grid-cols-2 gap-5" >
             

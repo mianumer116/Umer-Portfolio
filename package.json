@@ -1,5 +1,5 @@
 {
-  "homepage": "https://mianumer116.github.io/bitcoin",
+  "homepage": "https://mianumer116.github.io/Umer-Portfolio",
   "name": "my-react-app",
   "version": "0.1.0",
   "private": true,
@@ -12,6 +12,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "body-parser": "^1.20.2",
+    "gh-pages": "^6.1.1",
     "github": "^14.0.0",
     "multer": "^1.4.5-lts.1",
     "pages": "^0.0.16",

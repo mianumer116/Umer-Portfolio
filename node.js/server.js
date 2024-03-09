@@ -4,12 +4,14 @@ const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const path = require('path');
 const upload = multer();
+const cors = require('cors');
+
 
 
 
 const app = express();
 const port = 3000;
-
+app.use(cors());
 // Enable form-data parsing middleware for file uploads
 app.use(upload.none());
 app.use(cookieParser());
@@ -49,11 +51,17 @@ const reglogin=require('./routes/reglogin')
 const userreg=require('./routes/userreg')
 const tradingsignal=require('./routes/tradingsignals')
 const crypto=require('./routes/cryptocourse')
+const frontend=require('./routes/frontend')
+ const backend=require('./routes/backend')
+ const help=require('./routes/help')
 app.use('/login', loginRoutes);
 app.use('/reglogin',reglogin)
 app.use('/reguser',userreg)
 app.use('/tradingsignal',tradingsignal)
 app.use('/cryptocourse',crypto)
+app.use('/frontend',frontend)
+app.use('/backend',backend)
+app.use('/help',help)
 // Start the server
 app.listen(port, () => {
     console.log('Server is listening on Port', port);

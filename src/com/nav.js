@@ -30,15 +30,15 @@ function Nav() {
             <a href="http://localhost:3000/reglogin" class="mr-5 hover:text-gray-900">Registeration</a>
           </form>
           
-            <a class="mr-5 hover:text-gray-900">Blogs </a>
+            <Link to="/contact" class="mr-5 hover:text-gray-900">Contact </Link>
             <form action="http://localhost:3000/login">
 
             <a href='http://localhost:3000/login' class="mr-5 hover:text-gray-900">Sign In </a>
             </form>
 
           </nav>
-          <div class="jj inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
-            <div className='jj'>
+          <div className="fp inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">
+            <div className='fp'>
               <a className='x' href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
                 <FontAwesomeIcon icon={faYoutube} size="2x" style={{ color: 'red' }}  />
               </a>

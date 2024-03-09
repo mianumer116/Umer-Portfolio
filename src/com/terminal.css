@@ -31,11 +31,17 @@
     animation: blink-animation 0.5s infinite;
     color: green;
   }
-  
+  .if{
+    background-color: black;
+    color:#01D293;
+  }
   @keyframes blink-animation {
     50% {
       opacity: 0;
     }
+  }
+  .gsv{
+    display: none;
   }
   .in{
     background-color: #0E1630;
@@ -46,3 +52,13 @@
   .in:hover{
     border-color: blue;
   }
+ .fdsa{
+  background-color: gainsboro;
+  color:green;
+  width:200px;
+  margin-top: 34px;
+  border-color:#01D293;
+ }
+ .fdsa:hover{
+  background-color: antiquewhite;
+ }

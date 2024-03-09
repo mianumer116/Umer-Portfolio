@@ -43,12 +43,12 @@ function Footer() {
                 <form action="mailto:" method="post" enctype="text/plain">
 
                    
-                    <div>
+                    <div className="boxoh">
                         <h1 className='test'>---Contact with me</h1>
                         <input className='fg' placeholder="Your Full Name" />
                         <input className='fg' placeholder="Your Email" />
-                        <textarea name="message" className='kh fg' rows="4" colmns="22">
-                            Your Message Here
+                        <textarea name="message" className='kh fg' rows="4" colmns="22" placeholder='Your Message'>
+                            
                         </textarea>
                         <button type="submit" class=" ip text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">Send Email</button>
 
