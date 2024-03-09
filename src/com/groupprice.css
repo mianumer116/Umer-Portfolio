@@ -20,3 +20,10 @@
     transition: 2s;
   }
   
+  @media screen and (max-width:1200px) and (min-width:767px) {
+    .lmgs{
+        position: relative;
+        bottom:200px;
+    }
+    
+  }

@@ -12,6 +12,20 @@
     background-color: antiquewhite;
     color:#03B785;
 }
+@media screen and (max-width:767px) {
+    .kl{
+        position: relative;
+        bottom:230px;
+    }
+    
+}
+@media screen and (max-width:1200px) and (min-width:767px){
+    .ml{
+        position: relative;
+        bottom:500px;
+    }
+    
+}
 
 
 
