@@ -1,14 +1,10 @@
-.ba{
-   
-  
-  
-}
+
 
 .bla{
-    margin-top:100px;
-    height: 400px;
-    border:solid;
-    padding:80px;
+    margin-top:100px !important;
+    height: 400px !important;
+    border:solid !important;
+    padding:80px !important;
 }
 .bdg{
     font-size: 32px;

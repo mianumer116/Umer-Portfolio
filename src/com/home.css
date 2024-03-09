@@ -25,3 +25,64 @@ body{
         bottom:800px;
     }
 }
+
+
+
+.bla{
+    margin-top:100px !important;
+    height: 400px !important;
+    border:solid !important;
+    padding:80px !important;
+}
+.bdg{
+    font-size: 32px;
+    color:#01D293;
+}
+.green-text {
+    color: #01D293;
+    font-size: 32px;
+  }
+  
+  .blinking-cursor {
+    display: inline-block;
+    position: relative;
+    font-size: 32px;
+    font-weight:900;
+  }
+  
+  .blinking-cursor:before {
+    content: '|';
+    animation: blink-animation 0.5s infinite;
+    color: green;
+  }
+  .if{
+    background-color: black;
+    color:#01D293;
+  }
+  @keyframes blink-animation {
+    50% {
+      opacity: 0;
+    }
+  }
+  .gsv{
+    display: none;
+  }
+  .in{
+    background-color: #0E1630;
+    color:#01D293;
+    border: none;
+    border-color: #0E1630;
+  }
+  .in:hover{
+    border-color: blue;
+  }
+ .fdsa{
+  background-color: gainsboro;
+  color:green;
+  width:200px;
+  margin-top: 34px;
+  border-color:#01D293;
+ }
+ .fdsa:hover{
+  background-color: antiquewhite;
+ }

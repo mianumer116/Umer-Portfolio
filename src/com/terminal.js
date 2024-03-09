@@ -17,11 +17,11 @@ function Terminal() {
               |
             </span>
           </p>
-          <div className=""></div>
-         
+          
+
         </div>
       </div>
-      
+
     </>
   );
 }
