@@ -6,7 +6,7 @@ const col={
   border:"solid",
   borderColor:'white',
   marginTop:'100px',
-  paddig:'80px',
+  padding:'80px',
   height:'400px'
 
 }
