@@ -54,7 +54,8 @@ const frontend=require('./routes/frontend')
  const help=require('./routes/help')
  const game=require('./routes/game')
  const pingpong=require('./routes/pingpong')
-
+const tictac=require('./routes/tictacgame')
+const guess=require('./routes/guess')
 app.use('/login', loginRoutes);
 app.use('/reglogin',reglogin)
 app.use('/reguser',userreg)
@@ -65,6 +66,8 @@ app.use('/backend',backend)
 app.use('/help',help)
 app.use('/game',game)
 app.use('/pingpong',pingpong)
+app.use('/tictacgame',tictac)
+app.use('/guess',guess);
 // Start the serve
 app.listen(port, () => {
     console.log('Server is listening on Port', port);

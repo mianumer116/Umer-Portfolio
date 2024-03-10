@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ping Pong Game</title>
- 
+
   <style>
     body {
       display: flex;
@@ -22,12 +23,15 @@
     }
   </style>
 </head>
+
 <body>
   <%- include('gamenav.ejs') %>
+
+  <!--- Your game navigation or any other HTML elements go here --->
+
   <canvas id="pingPongCanvas" width="600" height="400"></canvas>
 
   <script>
-
     document.addEventListener('DOMContentLoaded', () => {
       const canvas = document.getElementById('pingPongCanvas');
       const ctx = canvas.getContext('2d');
@@ -72,6 +76,7 @@
       function update() {
         // Move paddles
         movePaddle();
+        moveAutoPaddle(); // Added automatic movement for player one
 
         // Move ball
         ballX += ballSpeedX;
@@ -103,22 +108,6 @@
       }
 
       function movePaddle() {
-        // Move paddle 1 with keyboard (up and down arrows)
-        document.addEventListener('keydown', event => {
-          switch (event.key) {
-            case 'ArrowUp':
-              if (paddle1Y - paddleSpeed >= 0) {
-                paddle1Y -= paddleSpeed;
-              }
-              break;
-            case 'ArrowDown':
-              if (paddle1Y + paddleHeight + paddleSpeed <= canvas.height) {
-                paddle1Y += paddleSpeed;
-              }
-              break;
-          }
-        });
-
         // Move paddle 2 with keyboard (W and S keys)
         document.addEventListener('keydown', event => {
           switch (event.key) {
@@ -148,6 +137,17 @@
         });
       }
 
+      // Function for automatic movement of paddle 1
+      function moveAutoPaddle() {
+        // Customize this logic as needed for automatic movement
+        // For example, you can make the paddle follow the ball's Y position
+        if (paddle1Y + paddleHeight / 2 < ballY) {
+          paddle1Y += paddleSpeed;
+        } else {
+          paddle1Y -= paddleSpeed;
+        }
+      }
+
       function resetBall() {
         ballX = canvas.width / 2;
         ballY = canvas.height / 2;
@@ -164,4 +164,5 @@
     });
   </script>
 </body>
+
 </html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guessing Game</title>
+
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    #game-container {
+      text-align: center;
+    }
+
+    #feedback {
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #333; /* Dark text color for better readability */
+    }
+
+    #input-container {
+      margin-top: 20px;
+    }
+
+    #attempts {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    #restart-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+    <!-- Include any additional components or navigation here if needed -->
+
+  <div id="game-container">
+    <h1>Guessing Game</h1>
+    <p>Guess a number between 1 and 10:</p>
+    <div id="feedback"></div>
+    <div id="input-container">
+      <input type="number" id="guessInput" min="1" max="10">
+      <button onclick="checkGuess()">Submit Guess</button>
+    </div>
+    <div id="attempts"></div>
+    <button id="restart-btn" onclick="restartGame()">Restart Game</button>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let targetNumber = generateRandomNumber(1, 10);
+      let attempts = 0;
+
+      function generateRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function checkGuess() {
+        const guessInput = document.getElementById('guessInput');
+        const feedback = document.getElementById('feedback');
+        const attemptsDisplay = document.getElementById('attempts');
+
+        const userGuess = parseInt(guessInput.value);
+
+        if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
+          feedback.textContent = 'Please enter a valid number between 1 and 10.';
+        } else {
+          attempts++;
+
+          if (userGuess === targetNumber) {
+            feedback.textContent = `Congratulations! You guessed the correct number (${targetNumber}) in ${attempts} attempts.`;
+            guessInput.disabled = true;
+          } else {
+            feedback.textContent = `Wrong guess! The correct number was ${targetNumber}. Try again!`;
+          }
+
+          attemptsDisplay.textContent = `Attempts: ${attempts}`;
+        }
+      }
+
+      function restartGame() {
+        targetNumber = generateRandomNumber(1, 10);
+        attempts = 0;
+        const guessInput = document.getElementById('guessInput');
+        const feedback = document.getElementById('feedback');
+        const attemptsDisplay = document.getElementById('attempts');
+
+        guessInput.value = '';
+        guessInput.disabled = false;
+        feedback.textContent = '';
+        attemptsDisplay.textContent = '';
+      }
+    });
+  </script>
+</body>
+
+</html>
