@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ping Pong Game</title>
+ 
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+    }
+
+    canvas {
+      border: 1px solid #fff;
+    }
+  </style>
+</head>
+<body>
+  <%- include('gamenav.ejs') %>
+  <canvas id="pingPongCanvas" width="600" height="400"></canvas>
+
+  <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const canvas = document.getElementById('pingPongCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const paddleWidth = 10;
+      const paddleHeight = 60;
+      const ballSize = 10;
+      const paddleSpeed = 5;
+
+      let paddle1Y = canvas.height / 2 - paddleHeight / 2;
+      let paddle2Y = canvas.height / 2 - paddleHeight / 2;
+
+      let ballX = canvas.width / 2;
+      let ballY = canvas.height / 2;
+      let ballSpeedX = 5;
+      let ballSpeedY = 5;
+
+      let scorePlayer1 = 0;
+      let scorePlayer2 = 0;
+
+      function draw() {
+        // Clear the canvas
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Draw paddles
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, paddle1Y, paddleWidth, paddleHeight);
+        ctx.fillRect(canvas.width - paddleWidth, paddle2Y, paddleWidth, paddleHeight);
+
+        // Draw ball
+        ctx.beginPath();
+        ctx.arc(ballX, ballY, ballSize, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.closePath();
+
+        // Draw score
+        ctx.font = '20px Arial';
+        ctx.fillText('Player 1: ' + scorePlayer1, 50, 30);
+        ctx.fillText('Player 2: ' + scorePlayer2, canvas.width - 150, 30);
+      }
+
+      function update() {
+        // Move paddles
+        movePaddle();
+
+        // Move ball
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+
+        // Ball collision with walls
+        if (ballY - ballSize < 0 || ballY + ballSize > canvas.height) {
+          ballSpeedY = -ballSpeedY;
+        }
+
+        // Ball collision with paddles
+        if (
+          (ballX - ballSize < paddleWidth && ballY > paddle1Y && ballY < paddle1Y + paddleHeight) ||
+          (ballX + ballSize > canvas.width - paddleWidth && ballY > paddle2Y && ballY < paddle2Y + paddleHeight)
+        ) {
+          ballSpeedX = -ballSpeedX;
+        }
+
+        // Ball out of bounds
+        if (ballX - ballSize < 0) {
+          // Player 2 scores
+          scorePlayer2++;
+          resetBall();
+        } else if (ballX + ballSize > canvas.width) {
+          // Player 1 scores
+          scorePlayer1++;
+          resetBall();
+        }
+      }
+
+      function movePaddle() {
+        // Move paddle 1 with keyboard (up and down arrows)
+        document.addEventListener('keydown', event => {
+          switch (event.key) {
+            case 'ArrowUp':
+              if (paddle1Y - paddleSpeed >= 0) {
+                paddle1Y -= paddleSpeed;
+              }
+              break;
+            case 'ArrowDown':
+              if (paddle1Y + paddleHeight + paddleSpeed <= canvas.height) {
+                paddle1Y += paddleSpeed;
+              }
+              break;
+          }
+        });
+
+        // Move paddle 2 with keyboard (W and S keys)
+        document.addEventListener('keydown', event => {
+          switch (event.key) {
+            case 'w':
+              if (paddle2Y - paddleSpeed >= 0) {
+                paddle2Y -= paddleSpeed;
+              }
+              break;
+            case 's':
+              if (paddle2Y + paddleHeight + paddleSpeed <= canvas.height) {
+                paddle2Y += paddleSpeed;
+              }
+              break;
+          }
+        });
+
+        // Move paddle 2 with mouse or touch
+        canvas.addEventListener('mousemove', event => {
+          const mouseY = event.clientY - canvas.getBoundingClientRect().top;
+          paddle2Y = mouseY - paddleHeight / 2;
+        });
+
+        canvas.addEventListener('touchmove', event => {
+          const touchY = event.touches[0].clientY - canvas.getBoundingClientRect().top;
+          paddle2Y = touchY - paddleHeight / 2;
+          event.preventDefault();
+        });
+      }
+
+      function resetBall() {
+        ballX = canvas.width / 2;
+        ballY = canvas.height / 2;
+        ballSpeedX = -ballSpeedX; // Change direction after scoring
+      }
+
+      function gameLoop() {
+        draw();
+        update();
+        requestAnimationFrame(gameLoop);
+      }
+
+      gameLoop();
+    });
+  </script>
+</body>
+</html>

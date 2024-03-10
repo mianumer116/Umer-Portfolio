@@ -52,6 +52,9 @@ const crypto=require('./routes/cryptocourse')
 const frontend=require('./routes/frontend')
  const backend=require('./routes/backend')
  const help=require('./routes/help')
+ const game=require('./routes/game')
+ const pingpong=require('./routes/pingpong')
+
 app.use('/login', loginRoutes);
 app.use('/reglogin',reglogin)
 app.use('/reguser',userreg)
@@ -60,7 +63,9 @@ app.use('/cryptocourse',crypto)
 app.use('/frontend',frontend)
 app.use('/backend',backend)
 app.use('/help',help)
-// Start the server
+app.use('/game',game)
+app.use('/pingpong',pingpong)
+// Start the serve
 app.listen(port, () => {
     console.log('Server is listening on Port', port);
 });

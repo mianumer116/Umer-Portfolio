@@ -41,8 +41,9 @@ function Nav() {
           <nav className="hidden md:flex md:ml-auto md:items-center md:w-auto nav" id="nav-menu">
             <Link to="/home" className="mr-5 hover:text-gray-900">Home</Link>
             <Link to='/courses' className="mr-5 hover:text-gray-900">Courses</Link>
-            <a href="http://localhost:3000/reglogin" className="mr-5 hover:text-gray-900">Registration</a>
-            <Link to="/contact" className="mr-5 hover:text-gray-900">Contact</Link>
+            <a href="http://localhost:3000/reglogin" className="mr-5 hover:text-gray-900">Regs</a>
+            
+            <a href="http://localhost:3000/game" className="mr-5 hover:text-gray-900">Game</a>
             <a href='http://localhost:3000/login' className="mr-5 hover:text-gray-900">Sign In</a>
           </nav>
 
