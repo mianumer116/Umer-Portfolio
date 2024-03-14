@@ -1,237 +1,222 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SnakeMania - Ek Gaming Katha</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Flappy Bird</title>
+        <link rel="stylesheet" href="flappybird.css">
+        <script src="flappybird.js"></script>
+    </head>
+    <body>
 
-<body>
- 
-    
-    <div class="body">
-        <div id="scoreBox">Score: 0</div>
-        <div id="hiscoreBox">HiScore: 0</div>
-        <div id="board"></div>
-    </div>
- 
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=New+Tegomin&display=swap');
-*{
-    padding: 0;
-    margin: 0;
-}
+        <canvas id="board"></canvas>
+        <style>
+            body {
+                font-family:'Courier New', Courier, monospace;
+                text-align: center;
+            }
 
-.body{
-    background: url("https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/417549480_959123509064369_2277822595575780013_n.jpg?stp=dst-jpg_p960x960&_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHcFO1BvCtQia1fFePfBAJAmjynpmpLZ0iaPKemaktnSMCQOJ2wrtBSQcTeeBkFREQVvMvckVZ-XxWJde31pJum&_nc_ohc=AMVALxeE2f4AX9G07xg&_nc_ht=scontent.flhe13-1.fna&oh=00_AfBXoS3nNSrFCCNhjVi6Al_aeOMV7aLg-gUNfTwzIRmsgA&oe=65F43690"); 
-    min-height: 100vh;
-    background-size: 100vw 100vh;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+            #board {
+                /* background-color: skyblue; */
+                background-image: url("https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/417397512_959245819052138_6492110325992517110_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF1IFa8tBYOKMroCY4OnJaWsf13g4iTwSCx_XeDiJPBIPeVa2q0ChuU-GXcg-OwodyCPxUsXzTPZykeLN76UG8V&_nc_ohc=HWAIwq_UfZsAX_m0pyX&_nc_oc=AQkGmbdlVEGstDLT5r5sufmYtdWnWx4pZJa_xyoCScEJpfj265rkE9A8NRPekLanGrQ&_nc_ht=scontent.flhe13-1.fna&oh=00_AfAGfYTNXEXLgAXWCqbAbqPp3BKXQZvzoJq6ivpcEvCulQ&oe=65F42B3F");
+            }
+        </style>
+        <script>
 
-#scoreBox{
-    position: absolute;
-    top: 9px;
-    right: 200px;
-    font-size: 39px;
-    font-weight: bold;
-    font-family: 'New Tegomin', serif;
-}
+            //board
+            let board;
+            let boardWidth = 360;
+            let boardHeight = 640;
+            let context;
 
-#hiscoreBox{
-    position: absolute;
-    top: 59px;
-    right: 140px;
-    font-size: 39px;
-    font-weight: bold;
-    font-family: 'New Tegomin', serif;
-}
+            //bird
+            let birdWidth = 34; //width/height ratio = 408/228 = 17/12
+            let birdHeight = 24;
+            let birdX = boardWidth/8;
+            let birdY = boardHeight/2;
+            let birdImg;
 
-#board{
-    background: linear-gradient(rgb(170, 236, 170), rgb(236, 236, 167));
-    width: 90vmin;
-    height: 92vmin;
-    border: 2px solid black;
-    display: grid;
-    grid-template-rows: repeat(18, 1fr);
-    grid-template-columns: repeat(18, 1fr);
-}
+            let bird = {
+                x : birdX,
+                y : birdY,
+                width : birdWidth,
+                height : birdHeight
+            }
 
-.head{
-    background: linear-gradient(rgb(240, 124, 124), rgb(228, 228, 129));
-    border: 2px solid rgb(34, 4, 34); 
-    transform: scale(1.02);
-    border-radius: 9px;
-}
+            //pipes
+            let pipeArray = [];
+            let pipeWidth = 64; //width/height ratio = 384/3072 = 1/8
+            let pipeHeight = 512;
+            let pipeX = boardWidth;
+            let pipeY = 0;
 
-.snake{
-    background-color: purple;
-    border: .25vmin solid white;
-    border-radius: 12px;
-}
+            let topPipeImg;
+            let bottomPipeImg;
 
-.food{
-    background: linear-gradient(red, purple);
-    border: .25vmin solid black;
-    border-radius: 8px;
-}
-</style>
-<script>
+            //physics
+            let velocityX = -2; //pipes moving left speed
+            let velocityY = 0; //bird jump speed
+            let gravity = 0.5;
 
-  // Game Constants & Variables
-let inputDir = {x: 0, y: 0}; 
-const foodSound = new Audio('file:///d%3A/Umer-Portfolio/Umer-Portfolio/music/food.mp3');
-const gameOverSound = new Audio('music/gameover.mp3');
-const moveSound = new Audio('music/move.mp3');
-const musicSound = new Audio('music/music.mp3');
-let speed = 19;
-let score = 0;
-let lastPaintTime = 0;
-let snakeArr = [
-    {x: 13, y: 15}
-];
+            let gameOver = false;
+            let score = 0;
 
-food = {x: 6, y: 7};
+            // Sounds
+            let backgroundSound = new Audio('./music.mp3'); // replace 'background.mp3' with your background sound file
+            let touchSound = new Audio('music.mp3'); // replace 'touch.mp3' with your touch sound file
 
-// Game Functions
-function main(ctime) {
-    window.requestAnimationFrame(main);
-    // console.log(ctime)
-    if((ctime - lastPaintTime)/1000 < 1/speed){
-        return;
-    }
-    lastPaintTime = ctime;
-    gameEngine();
-}
+            window.onload = function() {
+                board = document.getElementById("board");
+                board.height = boardHeight;
+                board.width = boardWidth;
+                context = board.getContext("2d"); //used for drawing on the board
 
-function isCollide(snake) {
-    // If you bump into yourself 
-    for (let i = 1; i < snakeArr.length; i++) {
-        if(snake[i].x === snake[0].x && snake[i].y === snake[0].y){
-            return true;
-        }
-    }
-    // If you bump into the wall
-    if(snake[0].x >= 18 || snake[0].x <=0 || snake[0].y >= 18 || snake[0].y <=0){
-        return true;
-    }
-        
-    return false;
-}
+                //load images
+                birdImg = new Image();
+                birdImg.src = "https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/419039096_959246189052101_6782607175526331206_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeHTCnYIew_EcPzDm2cEffQyFI0GlS1-UZgUjQaVLX5RmOz9PnluKYDr9VPFlvwQyCMtbv9HVzADE5HsijoB130H&_nc_ohc=u3z1AjDqH6YAX9okDVd&_nc_ht=scontent.flhe13-1.fna&oh=00_AfAcGwBKTW4Jv_Y32OqZFVCQAah8Dae0bp-mBIKAdZVMHw&oe=65F41E59";
+                birdImg.onload = function() {
+                    context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
+                }
 
-function gameEngine(){
-    // Part 1: Updating the snake array & Food
-    if(isCollide(snakeArr)){
-        gameOverSound.play();
-        musicSound.pause();
-        inputDir =  {x: 0, y: 0}; 
-        alert("Game Over. Press any key to play again!");
-        snakeArr = [{x: 13, y: 15}];
-        musicSound.play();
-        score = 0; 
-    }
+                topPipeImg = new Image();
+                topPipeImg.src = "https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/420201456_959250622384991_435582013016848001_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGs1au290JryZOO0CkXbzP3LwXZsSy1ANYvBdmxLLUA1pTBaSxy4iMY5yK0FD4hjkBe3uv34iQJ2nm-SA_jeaUn&_nc_ohc=ZhSjOhPo3HUAX-l1zII&_nc_ht=scontent.flhe13-1.fna&oh=00_AfBTm7ivs7b8IdLBMzxgRZOCwUUZL4KqXR5HQ8lHPn5MqA&oe=65F4D321";
 
-    // If you have eaten the food, increment the score and regenerate the food
-    if(snakeArr[0].y === food.y && snakeArr[0].x ===food.x){
-        foodSound.play();
-        score += 1;
-        if(score>hiscoreval){
-            hiscoreval = score;
-            localStorage.setItem("hiscore", JSON.stringify(hiscoreval));
-            hiscoreBox.innerHTML = "HiScore: " + hiscoreval;
-        }
-        scoreBox.innerHTML = "Score: " + score;
-        snakeArr.unshift({x: snakeArr[0].x + inputDir.x, y: snakeArr[0].y + inputDir.y});
-        let a = 2;
-        let b = 16;
-        food = {x: Math.round(a + (b-a)* Math.random()), y: Math.round(a + (b-a)* Math.random())}
-    }
+                bottomPipeImg = new Image();
+                bottomPipeImg.src = "https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/420281361_959247029052017_5224323312291210079_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFIwwgExSB_PbEwWyZuBmGxTN5GxyY1xY5M3kbHJjXFjibPPeY0c9sZioYa1jAbcom8jqSvUVz2DKUeaDxzF-dS&_nc_ohc=Z6sUBrs9uVYAX_RvHv5&_nc_ht=scontent.flhe13-1.fna&oh=00_AfCqGOjr2aa4iJZtGididXS0Cf8O_kq8xNlC59Yh4m7EeA&oe=65F3C1CD";
 
-    // Moving the snake
-    for (let i = snakeArr.length - 2; i>=0; i--) { 
-        snakeArr[i+1] = {...snakeArr[i]};
-    }
+                requestAnimationFrame(update);
+                setInterval(placePipes, 1500); //every 1.5 seconds
+                document.addEventListener("keydown", moveBird);
 
-    snakeArr[0].x += inputDir.x;
-    snakeArr[0].y += inputDir.y;
+                // Start background sound
+                backgroundSound.loop = true;
+                backgroundSound.play();
+            }
 
-    // Part 2: Display the snake and Food
-    // Display the snake
-    board.innerHTML = "";
-    snakeArr.forEach((e, index)=>{
-        snakeElement = document.createElement('div');
-        snakeElement.style.gridRowStart = e.y;
-        snakeElement.style.gridColumnStart = e.x;
+            function update() {
+                requestAnimationFrame(update);
+                if (gameOver) {
+                    return;
+                }
+                context.clearRect(0, 0, board.width, board.height);
 
-        if(index === 0){
-            snakeElement.classList.add('head');
-        }
-        else{
-            snakeElement.classList.add('snake');
-        }
-        board.appendChild(snakeElement);
-    });
-    // Display the food
-    foodElement = document.createElement('div');
-    foodElement.style.gridRowStart = food.y;
-    foodElement.style.gridColumnStart = food.x;
-    foodElement.classList.add('food')
-    board.appendChild(foodElement);
+                //bird
+                velocityY += gravity;
+                bird.y = Math.
+                max(bird.y + velocityY, 0);
+                context.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 
+                if (bird.y > board.height) {
+                    gameOver = true;
+                }
 
-}
+                //pipes
+                for (let i = 0; i < pipeArray.length; i++) {
+                    let pipe = pipeArray[i];
+                    pipe.x += velocityX;
+                    context.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height);
 
+                    if (!pipe.passed && bird.x > pipe.x + pipe.width) {
+                        score += 0.5;
+                        pipe.passed = true;
+                    }
 
-// Main logic starts here
-musicSound.play();
-let hiscore = localStorage.getItem("hiscore");
-if(hiscore === null){
-    hiscoreval = 0;
-    localStorage.setItem("hiscore", JSON.stringify(hiscoreval))
-}
-else{
-    hiscoreval = JSON.parse(hiscore);
-    hiscoreBox.innerHTML = "HiScore: " + hiscore;
-}
+                    if (detectCollision(bird, pipe)) {
+                        gameOver = true;
+                    }
+                }
 
-window.requestAnimationFrame(main);
-window.addEventListener('keydown', e =>{
-    inputDir = {x: 0, y: 1} // Start the game
-    moveSound.play();
-    switch (e.key) {
-        case "ArrowUp":
-            console.log("ArrowUp");
-            inputDir.x = 0;
-            inputDir.y = -1;
-            break;
+                //clear pipes
+                while (pipeArray.length > 0 && pipeArray[0].x < -pipeWidth) {
+                    pipeArray.shift();
+                }
 
-        case "ArrowDown":
-            console.log("ArrowDown");
-            inputDir.x = 0;
-            inputDir.y = 1;
-            break;
+                //score
+                context.fillStyle = "white";
+                context.font="45px sans-serif";
+                context.fillText(score, 5, 45);
 
-        case "ArrowLeft":
-            console.log("ArrowLeft");
-            inputDir.x = -1;
-            inputDir.y = 0;
-            break;
+                if (gameOver) {
+                    context.fillText("GAME OVER", 5, 90);
+                }
+            }
 
-        case "ArrowRight":
-            console.log("ArrowRight");
-            inputDir.x = 1;
-            inputDir.y = 0;
-            break;
-        default:
-            break;
-    }
+            function placePipes() {
+                if (gameOver) {
+                    return;
+                }
 
-});
-</script>
-</body>
+                let randomPipeY = pipeY - pipeHeight/4 - Math.random()*(pipeHeight/2);
+                let openingSpace = board.height/4;
+
+                let topPipe = {
+                    img : topPipeImg,
+                    x : pipeX,
+                    y : randomPipeY,
+                    width : pipeWidth,
+                    height : pipeHeight,
+                    passed : false
+                }
+                pipeArray.push(topPipe);
+
+                let bottomPipe = {
+                    img : bottomPipeImg,
+                    x : pipeX,
+                    y : randomPipeY + pipeHeight + openingSpace,
+                    width : pipeWidth,
+                    height : pipeHeight,
+                    passed : false
+                }
+                pipeArray.push(bottomPipe);
+            }
+
+            function moveBird(e) {
+                if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
+                    velocityY = -6;
+                    touchSound.play();
+
+                    if (gameOver) {
+                        bird.y = birdY;
+                        pipeArray = [];
+                        score = 0;
+                        gameOver = false;
+                    }
+                }
+            }
+
+            function detectCollision(a, b) {
+                return a.x < b.x + b.width &&
+                    a.x + a.width > b.x &&
+                    a.y < b.y + b.height &&
+                    a.y + a.height > b.y;
+            }
+
+            document.addEventListener("touchstart", handleTouchStart);
+            document.addEventListener("touchend", handleTouchEnd);
+
+            function handleTouchStart(e) {
+                if (e.touches.length === 1) {
+                    e.preventDefault();
+                    moveBirdUp();
+                }
+            }
+
+            function handleTouchEnd(e) {
+                e.preventDefault();
+                // You can add additional logic for touch end if needed
+            }
+
+            function moveBirdUp() {
+                velocityY = -6;
+                touchSound.play();
+
+                if (gameOver) {
+                    bird.y = birdY;
+                    pipeArray = [];
+                    score = 0;
+                    gameOver = false;
+                }
+            }
+        </script>
+    </body>
 </html>

@@ -26,6 +26,12 @@
     }
     
 }
+@media screen and (max-width:767px){
+    .gjf{
+        font-size: 32px;
+        color:#03B785;
+        }
+}
 
 
 
