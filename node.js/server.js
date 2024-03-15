@@ -31,7 +31,6 @@ mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 // Check if the connection is successful
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

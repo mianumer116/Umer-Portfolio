@@ -1,5 +1,39 @@
 import './courses.css'
+
+import React, { useEffect } from 'react';
+import { animateScroll as scroll } from 'react-scroll';
+
 function Courses() {
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    const handleScroll = () => {
+        // Here, you can define the animation logic when scrolling
+        // For example, add a class to the course items when they come into view
+
+        // Select all elements with the class 'box' using querySelectorAll
+        const boxes = document.querySelectorAll('.box');
+        
+        // Loop through each box
+        boxes.forEach(box => {
+            // Get the box's position relative to the viewport
+            const boxTop = box.getBoundingClientRect().top;
+            
+            // If the box is in the viewport (visible)
+            if (boxTop < window.innerHeight - 100) {
+                // Add the 'fade-in' class to the box
+                box.classList.add('fade-in');
+            } else {
+                // Remove the 'fade-in' class if the box is not in the viewport
+                box.classList.remove('fade-in');
+            }
+        });
+    };
+
     return (
         <>
         
