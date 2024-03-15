@@ -1,6 +1,26 @@
 import './groupprice.css'
+import React, {useState,useEffect} from 'react'
 function Group() {
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
+    const handleScroll = () => {
+        const elements = document.querySelectorAll('.bgr');
+        
+        elements.forEach(element => {
+            const elementTop = element.getBoundingClientRect().top;
+            
+            if (elementTop < window.innerHeight - 100) {
+                element.classList.add('fade-in');
+            } else {
+                element.classList.remove('fade-in');
+            }
+        });
+    };
     const div = {
         display: 'flex',
         justifyContent: 'center'

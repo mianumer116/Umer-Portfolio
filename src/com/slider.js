@@ -1,25 +1,46 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './slider.css';
 
 const ImageSlider = () => {
-  const images = ['https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', 'https://images.unsplash.com/photo-1617791160536-598cf32026fb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D','https://plus.unsplash.com/premium_photo-1674086970773-726e445f5802?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D']; // Add your image URLs here
+  const images = [
+    'https://images.unsplash.com/photo-1622547748225-3fc4abd2cca0?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1617791160536-598cf32026fb?q=80&w=1964&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://plus.unsplash.com/premium_photo-1674086970773-726e445f5802?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'
+  ]; // Add your image URLs here
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Change slide every 3 seconds
+    const handleScroll = () => {
+      if (!sliderRef.current) return;
+      const { top, bottom } = sliderRef.current.getBoundingClientRect();
+      setIsVisible(top < window.innerHeight && bottom >= 0);
+    };
 
-    return () => clearInterval(interval);
-  }, [currentIndex, images.length]);
- 
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
-  const subs=()=>{
-    window.location.href="https://www.youtube.com/channel/UCqKh-pASyz1aryH9LrH0OzQ";
-  }
+  useEffect(() => {
+    if (isVisible) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, 3000); // Change slide every 3 seconds
+
+      return () => clearInterval(interval);
+    }
+  }, [isVisible, images.length]);
+
+  const subs = () => {
+    window.location.href = 'https://www.youtube.com/channel/UCqKh-pASyz1aryH9LrH0OzQ';
+  };
+
   return (
-    <div className='grid md:grid-cols-4 bm '>
-
+    <div ref={sliderRef} className={`grid md:grid-cols-4 bm ${isVisible ? 'fade-in' : ''}`}>
       <div className="max-w-screen-lg mx-auto overflow-hidden col-span-1 slider as">
         <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {images.map((image, index) => (
@@ -49,7 +70,8 @@ const ImageSlider = () => {
 
       <div className='box2 bpx col-span-1 col-start-2 rounded-r-lg transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300'>
         <img src="https://cdn-icons-png.flaticon.com/128/1709/1709973.png" alt="Subscribe Icon" className="w-6 h-6 mr-2 jk" />
-        290 Videos Uploaded</div>
+        290 Videos Uploaded
+      </div>
     </div>
   );
 };
