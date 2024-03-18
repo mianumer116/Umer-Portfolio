@@ -25,7 +25,7 @@ function Join() {
 
   return (
     <>
-      <section ref={joinRef} className="text-gray-600 body-font">
+      <section ref={joinRef} className="text-gray-600 body-font ppl">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap -mx-4 -mb-10 text-center">
             <div className="sm:w-1/2 mb-10 px-4 kl ml">

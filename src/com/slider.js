@@ -40,6 +40,7 @@ const ImageSlider = () => {
   };
 
   return (
+    
     <div ref={sliderRef} className={`grid md:grid-cols-4 bm ${isVisible ? 'fade-in' : ''}`}>
       <div className="max-w-screen-lg mx-auto overflow-hidden col-span-1 slider as">
         <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>

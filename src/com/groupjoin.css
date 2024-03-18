@@ -49,3 +49,12 @@
   .reveal {
     animation: revealAnimation 0.5s ease forwards;
   }
+
+  @media screen and (max-width:767px) {
+    .ppl{
+        
+            margin-top:300PX ;
+        
+    }
+    
+  }
