@@ -31,7 +31,10 @@ function Home() {
             <p className="mb-8 leading-relaxed n">Hi there! My name is Umer Sohail  and I’m a software engineer with over 5 years of experience in the industry. I love all things tech and coding, and on my channel, I share my knowledge and experience with others.</p>
 
             <div className="flex justify-center ">
-            <button className="hk ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Join Discord</button>
+              <form action='http://localhost:3000/cv' >
+
+            <button type='submit' className="hk ml-4 inline-flex text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded text-lg">Download CV</button>
+              </form>
 
             </div>
           </div>
